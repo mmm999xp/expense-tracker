@@ -1,8 +1,14 @@
 const mongoose = require('mongoose')
+
+//僅在非正式環境時, 使用 doten載入環境變數
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config()
+}
 //連線資料庫
 mongoose.connect(process.env.MONGODB_URI ,{
   useNewUrlParser: true, 
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
+  useCreateIndex: true
 })
 
 //取得資料庫的連線狀態

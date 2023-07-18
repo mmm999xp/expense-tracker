@@ -7,9 +7,9 @@ const recordSchema = new Schema({
     type: String,
     required: true
   },
-  data: {
+  date: {
     type: Date,
-    
+
   },
   amount: {
     type: Number,
