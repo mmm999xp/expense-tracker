@@ -8,23 +8,23 @@ db.once('open',()=>{
   .all([
     Category.create({
       name: '家居物業',
-      image: 'https://fontawesome.com/icons/home?style=solid'
+      icon: '<i class="fa-solid fa-house"></i>'
     }),
     Category.create({
       name: '交通出行',
-      image: 'https://fontawesome.com/icons/shuttle-van?style=solid'
+      icon: '<i class="fa-solid fa-van-shuttle"></i>'
     }),
     Category.create({
       name: '休閒娛樂',
-      image: 'https://fontawesome.com/icons/grin-beam?style=solid'
+      icon: '<i class="fa-solid fa-face-grin-beam"></i>'
     }),
     Category.create({
       name: '餐飲食品',
-      image: 'https://fontawesome.com/icons/utensils?style=solid'
+      icon: '<i class="fa-solid fa-utensils"></i>'
     }),
     Category.create({
       name: '其他',
-      image: 'https://fontawesome.com/icons/pen?style=solid'
+      icon: '<i class="fa-solid fa-pen"></i>'
     })
   ])
     .then(() => {
