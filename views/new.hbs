@@ -1,0 +1,50 @@
+<div class="row mt-5">
+  <div class="col-md-8 m-auto">
+    <div class="card card-body">
+      <h1 class="text-center mt-3">請輸入你的支出</h1>
+      <form action="/expense/new" method="POST" oninput="validateForm()" id="form" novalidate>
+      
+        <div class="mt-4 w-75 mx-auto">
+          <label for="name" class="form-label">*名稱 :</label>
+          <input type="text" class="form-control d-inline-block mx-3 w-75 border border-black" id="name"  name="name"  required>
+          <div class="name-error" style="color:red;position: relative;left:70px;"></div>
+        </div>
+
+        <div class="mt-4 w-75 mx-auto">
+          <label for="date" class="form-label">*日期 :</label>
+          <input type="date" class="form-control d-inline-block mx-3 w-75 border border-black" id="date" name="date" required>
+          <div class="date-error" style="color:red;position: relative;left:70px;"></div>
+        </div>
+
+        <div class="mt-4 w-75 mx-auto">
+          <label for="category" class="form-label">*類別 :</label>
+          <select id="category" class="form-control d-inline-block mx-3 w-75 border border-black"  name="categoryId" required>
+            <option selected>類別</option>
+            {{#each categorys}}
+            <option value="{{this._id}}">{{this.name}}</option>
+            {{/each}}
+          </select>
+          <div class="category-error" style="color:red;position: relative;left:70px;"></div>
+        </div>
+
+        <div class="mt-4 w-75 mx-auto">
+          <label for="amount" class="form-label">*金額 :</label>
+          <input type="text" class="form-control d-inline-block mx-3 w-75 border border-black" id="amount" name="amount" required>
+          <div class="amount-error" style="color:red;position: relative;left:70px;"></div>
+        </div>
+
+        <button type="submit" class="btn btn-primary d-grid mt-3 col-3 mx-auto">新增支出</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script>
+  const form = document.querySelector('#form')
+  form.addEventListener('submit' , () => {
+    if(!validateForm()){
+      event.preventDefault()
+      event.stopPropagation()
+    }
+  })
+</script>

@@ -1,6 +1,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const routes = require('./routes/index')
+
 const app = express()
 
 //引用mongoose設定檔
@@ -13,6 +14,8 @@ app.engine('hbs',exphbs({
 }))
 app.set('view engine' , 'hbs')
 
+app.use(express.static('public'))
+app.use(express.urlencoded({ extended: true }))
 // 將 request 導入路由器
 app.use(routes)
 

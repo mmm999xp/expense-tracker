@@ -4,11 +4,9 @@
     <div class="select-list">
       <select class="form-select  border-black" aria-label="Default select example">
         <option selected>類別</option>
-        <option value="1">家居物業</option>
-        <option value="2">交通出行</option>
-        <option value="3">休閒娛樂</option>
-        <option value="4">餐飲食品</option>
-        <option value="5">其他</option>
+        {{#each categorys}}
+        <option value="{{this._id}}">{{this}}</option>
+        {{/each}}
       </select>
     </div>
     {{!-- 總金額顯示 --}}
@@ -39,10 +37,10 @@
       </ul>
     </div>
     {{!-- 新增按鈕 --}}
-    <form action="/expense/new" method="get" class="d-flex justify-content-center mt-3 " >
-    <button type="button" class="btn btn-outline-primary " style="width:75%;">新增支出</button>
-    </form>
-    
+    <div class="d-flex justify-content-center mt-3 ">
+      <a href="/expense/new" class="btn btn-outline-primary " style="width:75%;">
+        新增支出</a>
+    </div>
   </div>
 </div>
 
