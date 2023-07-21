@@ -12,7 +12,7 @@ db.once('open', () => {
       .then((obj) => {
         return Record.create({
           name: '買房子',
-          date: '2023/07/21',
+          date: '2023-07-21',
           amount: 15000000,
           categoryId: obj._id
         })
@@ -21,7 +21,7 @@ db.once('open', () => {
       .then((obj) => {
         return Record.create({
           name: '坐飛機',
-          date: '2023/05/08',
+          date: '2023-05-08',
           amount: 88000,
           categoryId: obj._id
         })
@@ -30,7 +30,7 @@ db.once('open', () => {
       .then((obj) => {
         return Record.create({
           name: '潛水',
-          date: '2023/02/21',
+          date: '2023-02-21',
           amount: 30000,
           categoryId: obj._id
         })
@@ -39,7 +39,7 @@ db.once('open', () => {
       .then((obj) => {
         return Record.create({
           name: '高級酒店消費',
-          date: '2023/07/01',
+          date: '2023-07-01',
           amount: 120000,
           categoryId: obj._id
         })
@@ -48,7 +48,7 @@ db.once('open', () => {
       .then((obj) => {
         return Record.create({
           name: '教育活動',
-          date: '2023/04/20',
+          date: '2023-04-20',
           amount: 50000,
           categoryId: obj._id
         })

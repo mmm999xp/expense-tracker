@@ -6,12 +6,33 @@ const Record = require('../../models/record')
 const router = express.Router()
 
 
-
+//新增頁面
 router.get('/new', (req, res) => {
   Category.find()
     .lean()
     .then(categorys => res.render('new', { categorys }))
+    .catch(err => console.log(err))
 })
+//編輯頁面
+router.get('/:id', (req, res) => {
+  const _id = req.params.id
+  let categorys = []
+    Category.find()
+      .lean()
+      .then((categoryData) => {
+        //將搜尋得到的categoryData 存放到外部宣告的categorys，以便後續使用
+        categorys = categoryData
+        return Record.findOne({ _id }).lean()
+      })
+      .then((data) => {
+        categorys.forEach((i) =>{
+          i.selected = i._id.toString() === data.categoryId.toString()
+        })
+        res.render('edit', { data, categorys })
+        })
+      .catch(err => console.log(err))
+})
+
 
 router.post('/new',(req,res)=>{
   if (checkData(req.body)){
@@ -28,11 +49,10 @@ router.post('/new',(req,res)=>{
     })
     .then(() => res.redirect('/'))
     .catch(err => console.log(err))
-    
-    
   }
-  
 })
+
+
 
 
 module.exports = router
