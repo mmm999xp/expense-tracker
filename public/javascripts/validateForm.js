@@ -40,3 +40,50 @@ function validateForm() {
 
   return canSubmit = true
 }
+
+
+//註冊畫面驗證
+
+
+function validateEmail() {
+  const email = document.querySelector('#email').value
+  if (email.trim() === "") {
+    document.querySelector('.email-error').textContent = '請輸入email'
+    return false
+  } else if (!email.includes('@')){
+    document.querySelector('.email-error').textContent = '請輸入有效的電子郵件，應該要包含@'
+    return false
+  } else {
+    document.querySelector('.email-error').textContent = ''
+    return true
+  }
+}
+
+function validatePassword() {
+  const password = document.querySelector('#password').value
+
+  if (password.trim() === "") {
+    document.querySelector('.password-error').textContent = '請輸入password'
+    return false
+  } else {
+    document.querySelector('.password-error').textContent = ''
+    return true
+  }
+}
+
+function validateConfirmPassword() {
+  const confirmPassword = document.querySelector('#confirmPassword').value
+  const password = document.querySelector('#password').value
+  if (confirmPassword.trim() === "") {
+    document.querySelector('.confirmPassword-error').textContent = '請輸入Confirm Password'
+    return false
+  } else if (confirmPassword !== password){
+    document.querySelector('.confirmPassword-error').textContent = '密碼不相符'
+    return false
+  } else {
+    document.querySelector('.confirmPassword-error').textContent = ''
+    return true
+  }
+
+}
+
