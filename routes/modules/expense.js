@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
       .catch(err => console.log(err))
 })
 
-
+//新增功能
 router.post('/new',(req,res)=>{
   if (checkData(req.body)){
     let { name, date, categoryId , amount } = req.body
@@ -51,7 +51,23 @@ router.post('/new',(req,res)=>{
     .catch(err => console.log(err))
   }
 })
-
+//編輯功能
+router.put('/:id' , (req,res)=>{
+  const _id = req.params.id
+  if (checkData(req.body)){
+    let { name, date, categoryId, amount } = req.body
+    Record.findOne({ _id })
+    .then((data)=>{
+      data.name = name,
+      data.date = date,
+      data.categoryId = categoryId,
+      data.amount = amount
+      return data.save()
+    })
+    .then(()=> res.redirect('/'))
+    .catch(err => console.log(err))
+  }
+})
 
 
 
