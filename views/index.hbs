@@ -5,14 +5,14 @@
       <select class="form-select  border-black" aria-label="Default select example">
         <option selected>類別</option>
         {{#each categorys}}
-        <option value="{{this._id}}">{{this}}</option>
+        <option value="{{this._id}}">{{this.name}}</option>
         {{/each}}
       </select>
     </div>
     {{!-- 總金額顯示 --}}
     <div class="total d-flex flex-wrap justify-content-between mt-4">
       <p class="fs-5">總金額：</p>
-      <p class="fs-1" id="totalAmount" style="color:#A6033F;">15000000</p>
+      <p class="fs-1" id="totalAmount" style="color:#A6033F;"></p>
     </div>
     {{!-- 資料清單 --}}
     <div class="data-panel">
@@ -20,7 +20,10 @@
 
           {{#each data}}
           <li class="list-group-item d-flex align-items-center" style="height:90px;">
-            <i class="fa-solid fa-house" style="font-size:4em;"></i>
+            <span class="icon">
+              {{{this.icon}}}
+            </span>
+            
             <div class="name&date mx-3" style="display: flex;
                         flex-direction: column;">
               <div style="height:50%;font-size:1.5em">{{this.name}}</div>
