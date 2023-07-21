@@ -2,12 +2,16 @@
   <div class="col-md-6 m-auto mt-5">
     {{!-- 類別篩選 --}}
     <div class="select-list">
-      <select class="form-select  border-black" aria-label="Default select example">
-        <option selected>類別</option>
-        {{#each categorys}}
-        <option value="{{this._id}}">{{this.name}}</option>
-        {{/each}}
-      </select>
+      <form action="/filter/_id" method="get" id="category-form">
+        <select class="form-select  border-black" 
+        id="category-select" aria-label="Default select example">
+          <option selected>全部</option>
+          {{#each categorys}}
+          <option value="{{this.categoryId}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </form>
+      
     </div>
     {{!-- 總金額顯示 --}}
     <div class="total d-flex flex-wrap justify-content-between mt-4">
@@ -54,14 +58,5 @@
 </div>
 
 <script src="javascripts/checkDelete.js"></script>
-<script>
-  let totalAomunt = document.querySelector('#totalAmount')
-  const amounts = document.querySelectorAll('.cost')
-  let total = 0
-
-  amounts.forEach((item)=>{
-    total += Number(item.innerText)
-    return total
-  })
-  totalAomunt.innerText = total
-</script>
+<script src="javascripts/totalAmount.js"></script>
+<script src="javascripts/filter.js"></script>

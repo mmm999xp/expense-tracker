@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-md-6 m-auto mt-5">
+    {{!-- 類別篩選 --}}
+    <div class="select-list">
+      <form action="/filter/_id" method="get" id="category-form">
+        <select class="form-select  border-black" id="category-select" aria-label="Default select example">
+          <option value="all">全部</option>
+          {{#each categorys}}
+          <option value="{{this.categoryId}}"
+          {{#if this.selected}}selected {{/if}}>{{this.name}}
+          </option>
+          {{/each}}
+        </select>
+      </form>
+
+    </div>
+    {{!-- 總金額顯示 --}}
+    <div class="total d-flex flex-wrap justify-content-between mt-4">
+      <p class="fs-5">總金額：</p>
+      <p class="fs-1" id="totalAmount" style="color:#A6033F;"></p>
+    </div>
+    {{!-- 資料清單 --}}
+    <div class="data-panel">
+      <ul class="list-group">
+
+        {{#each data}}
+        <li class="list-group-item d-flex align-items-center" style="height:90px;">
+          <span class="icon">
+            {{{this.icon}}}
+          </span>
+
+          <div class="name&date mx-3" style="display: flex;
+                        flex-direction: column;">
+            <div style="height:50%;font-size:1.5em">{{this.name}}</div>
+            <div class="date" style="height:50%;">{{ this.date}}</div>
+          </div>
+          <div class="d-flex   cost" style="margin-left: auto;font-size:1.5em;">{{this.amount}}</div>
+          <div class="edit&delete d-flex" style="position: absolute;left:520px;">
+            <a href="/expense/{{this._id}}" class="btn btn-info " style="height:50px;width:70px;font-size:21px;">修改</a>
+            <form action="/expense/{{this._id}}?_method=delete" method="post">
+              <button class="btn btn-danger delete" style="height:50px;width:70px;font-size:21px;">
+                刪除
+              </button>
+            </form>
+
+          </div>
+        </li>
+        {{/each}}
+
+      </ul>
+    </div>
+    {{!-- 新增按鈕 --}}
+    <div class="d-flex justify-content-center mt-3 ">
+      <a href="/expense/new" class="btn btn-outline-primary " style="width:75%;">
+        新增支出</a>
+    </div>
+  </div>
+</div>
+
+<script src="../javascripts/checkDelete.js"></script>
+<script src="../javascripts/totalAmount.js"></script>
+<script src="../javascripts/filter.js"></script>

@@ -29,7 +29,6 @@ router.get('/', (req, res) => {
         }
       })
     })
-    console.log(data)
     res.render('index', { data, categorys })
   })
   .catch((error)=>{console.log(error)})
