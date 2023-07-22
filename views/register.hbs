@@ -13,7 +13,7 @@
           <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email" value="{{ email }}" oninput="validateEmail()"
             required>
 
-          <div class="email-error" style="color:red;position: relative;"></div>
+          <div class="email-error" style="color:red;position: relative;">{{emailError}}</div>
         </div>
         <div class="mb-3">
           <label for="password" class="mb-2">Password*</label>
