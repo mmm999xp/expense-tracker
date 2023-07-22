@@ -12,7 +12,13 @@
   <nav class="navbar bg-body-tertiary bg-secondary-subtle">
     <div class="container-fluid">
       <a class="navbar-brand fw-bold " href="/">家庭記帳本</a>
+      {{#if isAuthenticated}}
+      <a href="/users/logout" class="btn btn-outline-primary">Logout</a>
+      {{else}}
+      <a href="/users/login" class="btn btn-outline-primary">Login</a>
+      {{/if}}
     </div>
+    
   </nav>
   <main>
     {{{body}}} 

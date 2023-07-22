@@ -26,6 +26,13 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 //呼叫 Passport 函式並傳入 app
 usePassport(app)
+
+app.use((req, res, next) => {
+  //設定本地變數，可供所有樣板使用
+  res.locals.isAuthenticated = req.isAuthenticated()
+  res.locals.user = req.user
+  next()
+})
 // 將 request 導入路由器
 app.use(routes)
 
