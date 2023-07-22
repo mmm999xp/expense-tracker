@@ -22,7 +22,6 @@
           <label for="category" class="form-label">*類別 :</label>
           <select id="category" class="form-control d-inline-block mx-3 w-75 border border-black" name="categoryId"
             required>
-            <option >類別</option>
             {{#each categorys}}
             <option value="{{this._id}}" 
             {{#if this.selected}}selected{{/if}}>
