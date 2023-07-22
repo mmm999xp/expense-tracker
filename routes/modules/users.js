@@ -43,7 +43,7 @@ router.post('/register', (req, res) => {
 })
 
 router.post('/login', (req , res, next)=>{
-  passport.authenticate('local', (err, user, info) => {
+  passport.authenticate('local', (err, user) => {
     //錯誤處理
     if (err) { return next(err) }
     //認證失敗
@@ -56,9 +56,13 @@ router.post('/login', (req , res, next)=>{
     //認證成功
     return res.redirect('/')
 
-  })(req, res, next)
+  })(req, res, next) //passport.authenticate這個函式需要router.post傳遞(req, res, next)這些參數給他才能執行
 })
 
+router.get('/logout', (req, res) => {
+  req.logout()
+  res.redirect('/user/login')
+})
 
 
 module.exports = router
