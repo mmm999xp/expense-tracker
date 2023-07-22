@@ -18,8 +18,8 @@ router.get('/', (req, res) => {
       })
      }))
  }
-  
-  Record.find()
+  const userId = req.user._id //獲取使用者的id
+  Record.find({ userId })
   .lean()
   .then((data)=>{
     data.forEach((i)=>{

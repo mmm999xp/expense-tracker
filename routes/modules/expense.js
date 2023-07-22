@@ -16,13 +16,14 @@ router.get('/new', (req, res) => {
 //編輯頁面
 router.get('/:id', (req, res) => {
   const _id = req.params.id
+  const userId = req.user._id //獲取使用者的id
   let categorys = []
     Category.find()
       .lean()
       .then((categoryData) => {
         //將搜尋得到的categoryData 存放到外部宣告的categorys，以便後續使用
         categorys = categoryData
-        return Record.findOne({ _id }).lean()
+        return Record.findOne({ _id, userId }).lean()
       })
       .then((data) => {
         categorys.forEach((i) =>{
@@ -37,14 +38,15 @@ router.get('/:id', (req, res) => {
 router.post('/new',(req,res)=>{
   if (checkData(req.body)){
     let { name, date, categoryId , amount } = req.body
-
+    const userId = req.user._id //獲取使用者的id
     Category.findById(categoryId)
     .then(()=>{
       Record.create({
         name: name,
         date: date,
         categoryId: categoryId,
-        amount: amount
+        amount: amount,
+        userId: userId
       }) 
     })
     .then(() => res.redirect('/'))
@@ -54,9 +56,10 @@ router.post('/new',(req,res)=>{
 //編輯功能
 router.put('/:id' , (req,res)=>{
   const _id = req.params.id
+  const userId = req.user._id //獲取使用者的id
   if (checkData(req.body)){
     let { name, date, categoryId, amount } = req.body
-    Record.findOne({ _id })
+    Record.findOne({ _id, userId })
     .then((data)=>{
       data.name = name,
       data.date = date,
@@ -71,7 +74,8 @@ router.put('/:id' , (req,res)=>{
 //刪除功能
 router.delete('/:id', (req, res) => {
   const _id = req.params.id 
-  return Record.findOne({ _id })
+  const userId = req.user._id //獲取使用者的id
+  return Record.findOne({ _id, userId })
     .then(data => data.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))

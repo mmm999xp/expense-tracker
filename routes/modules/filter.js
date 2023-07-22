@@ -18,8 +18,11 @@ router.get('/:categoryId', (req , res)=>{
         })
       }))
   }
-  
-  Record.find({ categoryId: category_Id })
+  const userId = req.user._id //獲取使用者的id
+  Record.find({ 
+    categoryId: category_Id,
+    userId: userId
+   })
   .lean()
   .then((data) => {
     
