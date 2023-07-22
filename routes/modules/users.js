@@ -54,7 +54,10 @@ router.post('/login', (req , res, next)=>{
     }
 
     //認證成功
-    return res.redirect('/')
+    return req.login(user , (err)=>{
+      if (err) { return next(err) }
+      res.redirect('/')
+    }) 
 
   })(req, res, next) //passport.authenticate這個函式需要router.post傳遞(req, res, next)這些參數給他才能執行
 })

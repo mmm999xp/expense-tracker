@@ -1,8 +1,8 @@
 const express = require('express')
+const session = require('express-session')
 const exphbs = require('express-handlebars')
 const routes = require('./routes/index')
 const methodOverride = require('method-override')
-const session = require('express-session')
 const usePassport = require('./config/passport')
 const app = express()
 
