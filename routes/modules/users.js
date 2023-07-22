@@ -1,6 +1,8 @@
 // 引用 Express 與 Express 路由器
 const express = require('express')
 const User = require('../../models/user')
+// 引用 passport
+const passport = require('passport')
 const router = express.Router()
 
 router.get('/login', (req,res)=>{
@@ -39,5 +41,24 @@ router.post('/register', (req, res) => {
   })
     .catch(err => console.log(err))
 })
+
+router.post('/login', (req , res, next)=>{
+  passport.authenticate('local', (err, user, info) => {
+    //錯誤處理
+    if (err) { return next(err) }
+    //認證失敗
+    if (!user) {
+      const errorMessage = 'email或密碼錯誤'
+      return res.render('login', {  errorMessage })
+      
+    }
+
+    //認證成功
+    return res.redirect('/')
+
+  })(req, res, next)
+})
+
+
 
 module.exports = router
