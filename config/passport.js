@@ -11,7 +11,10 @@ module.exports = app => {
     User.findOne({ email })
       .then(user => {
         //檢測email是否被註冊過已經在routes/modules/users檢測過了
-
+        //如果找不到user，直接return出去
+        if (!user) {
+          return done(null, false)
+        }
 
         //return done(null, user)
         return bcrypt.compare(password, user.password).then(isMatch => {
